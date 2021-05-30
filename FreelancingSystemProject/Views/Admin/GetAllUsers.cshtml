@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "GetAllUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        User List
+    </h3>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Register","Account",null,new { @class= "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th>
+            Phone Number
+        </th>
+        
+        <th>
+            User Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserType)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "DeleteUser", new { id=item.Id },new { @class="btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>

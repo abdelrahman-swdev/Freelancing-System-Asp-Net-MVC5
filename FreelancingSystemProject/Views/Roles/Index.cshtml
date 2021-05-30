@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="alert alert-secondary">
+    <h3>
+        All Roles
+    </h3>
+</div>
+
+<p>
+    <a href="~/Roles/Create" class="btn btn-primary">Create New <i class="bi bi-plus-lg"></i></a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="~/Roles/Edit/@item.Id" class="btn btn-secondary">Edit <i class="bi bi-pencil-fill"></i></a>
+                <a href="~/Roles/Delete/@item.Id" class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+
+            </td>
+        </tr>
+    }
+
+
+
+
+</table>

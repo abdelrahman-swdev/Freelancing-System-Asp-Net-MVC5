@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.PostViewModel>
+
+@{
+    ViewBag.Title = "GetJobsByClient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        All Proposals sent by freelancers
+    </h3>
+</div>
+
+<hr />
+@foreach (var gr in Model)
+{
+    <h5>@gr.JobDescription</h5>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Freelanncer
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                proposal Date
+            </th>
+        </tr>
+        @foreach (var item in gr.proposals)
+        {
+            <tr>
+                <td>
+                    @item.User.UserName
+                </td>
+                <td>
+                    @item.Message
+                </td>
+                <td>
+                    @item.ProposalDate
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.SavedJobs>
+
+@{
+    ViewBag.Title = "GetSavedJobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        Saved Jobs
+    </h3>
+</div>
+
+@foreach(var item in Model)
+{
+
+    <div class="col-md-6 col-lg-4 containCard">
+
+        <div class="card border-dark text-white bg-dark" style="width: 18rem;">
+            <div class="card-header">
+                <span class="badge badge-primary">@item.Post.JobType.Type</span>
+                <span class="badge badge-primary">@item.Post.JobBudget</span>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item mb-2 bg-dark">Description : @item.Post.JobDescription</li>
+                    <li class="list-group-item mb-2 bg-dark">Created at : @item.Post.CreationDate</li>
+                    <li class="list-group-item mb-2 bg-dark">Created By : @item.User.UserName</li>
+                </ul>
+                
+
+                <div class="links">
+                    @Html.ActionLink("Remove", "RemoveFromSaved", "Home", new { id = item.Post.Id }, new { @class = "btn btn-danger mb-2 mt-2" })
+                </div>
+                
+            </div>
+        </div>
+    </div>
+}

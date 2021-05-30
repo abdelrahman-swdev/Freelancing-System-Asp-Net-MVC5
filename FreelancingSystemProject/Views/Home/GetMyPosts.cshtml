@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.Posts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="~/Posts/Create" class="btn btn-primary">Create New <i class="bi bi-plus-lg"></i></a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobType.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobBudget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                <a href="~/Posts/Edit/@item.Id" class="btn btn-secondary">Edit <i class="bi bi-pencil-fill"></i></a>
+                <a href="~/Posts/Delete/@item.Id" class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>

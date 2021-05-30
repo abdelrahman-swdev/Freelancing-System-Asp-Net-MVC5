@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.JobType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        Job Types
+    </h3>
+</div>
+
+<p>
+    <a href="~/JobTypes/Create" class="btn btn-primary">Create New <i class="bi bi-plus-lg"></i></a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            <a href="~/JobTypes/Edit/@item.Id" class="btn btn-secondary">Edit <i class="bi bi-pencil-fill"></i></a>
+            <a href="~/JobTypes/Delete/@item.Id" class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

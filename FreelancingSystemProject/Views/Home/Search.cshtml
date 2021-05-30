@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.Posts>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        Result
+    </h3>
+</div>
+
+<div class="row">
+
+
+    @foreach (var subitem in Model)
+    {
+        <div class="col-md-6 col-lg-4 containCard">
+
+            <div class="card border-dark text-white bg-dark" style="width: 18rem;">
+                <div class="card-header">
+                    <span class="badge badge-primary">@subitem.JobType.Type</span>
+                    <span class="badge badge-primary">@subitem.JobBudget</span>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item mb-2 bg-dark">Description : @subitem.JobDescription</li>
+                        <li class="list-group-item mb-2 bg-dark">Created at : @subitem.CreationDate</li>
+                        <li class="list-group-item mb-2 bg-dark">Created By : @subitem.User.UserName</li>
+                    </ul>
+                    <div class="links">
+                        @Html.ActionLink("Details", "Details", "Home", new { id = subitem.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                        @Html.ActionLink("Save For Later", "Apply", null, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

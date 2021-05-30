@@ -1,0 +1,30 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-secondary">
+    <h3>
+        Details
+    </h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="~/Roles/Delete/@Model.Id" class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

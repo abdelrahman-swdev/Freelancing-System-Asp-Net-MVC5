@@ -1,0 +1,74 @@
+﻿@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+body {
+    padding: 100px 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar {
+    padding: 15px;
+}
+
+/***************************************************/
+.containCard {
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    margin: 10px auto;
+    width: 98% !important;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-group {
+    text-align: center;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-img {
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.wrapper {
+    display: flex;
+}
+
+#profilePicture {
+    width:100%
+}
+
+.custom-form {
+    padding-bottom: 10px;
+    background-color: #343a40;
+    color: #ffe000;
+}

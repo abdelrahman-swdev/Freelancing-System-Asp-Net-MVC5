@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FreelancingSystemProject.Models.JobType>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row right-part">
+
+    <div class="jumbotron" style="width:100%;">
+        <h1 class="display-4">
+            Join the world's
+            work marketplace
+        </h1>
+        <p class="lead">
+            Find great talent. Build your business.
+            Take your career to the next level.
+        </p>
+        <hr class="my-4">
+        <a class="btn btn-outline-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+
+
+
+
+    @foreach (var item in Model)
+    {
+        foreach (var subitem in item.Posts)
+        {
+            if (subitem.IsApprovedByAdmin)
+            {
+                <div class="col-md-6 col-lg-4 containCard">
+
+                    <div class="card border-dark text-white bg-dark" style="width: 18rem;">
+                        <div class="card-header">
+                            <span class="badge badge-primary">@subitem.JobType.Type</span>
+                            <span class="badge badge-primary">@subitem.JobBudget</span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item mb-2 bg-dark">Description : @subitem.JobDescription</li>
+                                <li class="list-group-item mb-2 bg-dark">Created at : @subitem.CreationDate</li>
+                                <li class="list-group-item mb-2 bg-dark">Created By : @subitem.User.UserName</li>
+                            </ul>
+                            @if (User.IsInRole("Freelancer"))
+                            {
+
+                            <div class="links">
+                                @Html.ActionLink("Details", "Details", "Home", new { id = subitem.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                                @Html.ActionLink("Save For Later", "SaveJob","Home", new { id = subitem.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                            </div>
+                            }
+                        </div>  
+                    </div>
+                </div>
+                
+            }
+        }
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNet.Identity
+@using FreelancingSystemProject.Models
+@if (Request.IsAuthenticated)
+{
+    ApplicationDbContext db = new ApplicationDbContext();
+    var userId = User.Identity.GetUserId();
+    var user = db.Users.FirstOrDefault(u => u.Id == userId);
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <li class="nav-item">
+            <a class="nav-link" href="~/Account/EditProfile"><img class="profile-img" src="~/uploads/@user.imageUrl"/> @user.FirstName @user.LastName</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                Log out <i class="bi bi-x-circle-fill"></i>
+            </a>
+        </li>
+    </ul>
+    }
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+        <a href="/Account/Register" class="nav-link">
+            Register <i class="bi bi-lock-fill"></i>
+        </a>
+    </li>
+    <li>
+        <a href="/Account/Login" class="nav-link">
+            Login <i class="bi bi-person-fill"></i>
+        </a>
+    </li>
+</ul>
+}
