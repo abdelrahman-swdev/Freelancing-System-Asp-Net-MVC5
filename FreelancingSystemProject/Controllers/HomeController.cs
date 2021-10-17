@@ -24,7 +24,14 @@ namespace FreelancingSystemProject.Controllers
         /*******************************index in home page***************************/
         public ActionResult Index()
         {
-            return View(db.JobTypes.ToList());
+            return View(db.Posts.Where(p => p.IsApprovedByAdmin && !p.HasProposalAccepted).ToList());
+        }
+
+
+        public ActionResult JoinUs()
+        {
+            ViewBag.UserType = new SelectList(db.Roles.Where(r => r.Name != "Admin").ToList(), "Name", "Name");
+            return View();
         }
 
         /*******************************post Details ***************************/
@@ -174,6 +181,23 @@ namespace FreelancingSystemProject.Controllers
             return View(grouped.ToList());
         }
 
+        /*******************************Accept Proposal***************************/
+        public ActionResult AcceptProposal(int id)
+        {
+            var proposal = db.SendProposals.Find(id);
+            if (proposal == null)
+                return HttpNotFound();
+
+            var post = db.Posts.Find(proposal.PostId);
+            if (post == null)
+                return HttpNotFound();
+
+            post.HasProposalAccepted = !post.HasProposalAccepted;
+            db.SaveChanges();
+            return RedirectToAction("GetJobsByClient");
+
+        }
+
 
         /*******************************get all client posts***************************/
         [Authorize(Roles ="Client")]
@@ -200,25 +224,6 @@ namespace FreelancingSystemProject.Controllers
             || s.CreationDate.ToString().Contains(searchName)).ToList();
 
             return View(result);
-        }
-
-
-
-        /*******************************About page***************************/
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-
-        /*******************************Contact Page***************************/
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

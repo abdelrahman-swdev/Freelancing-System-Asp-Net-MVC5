@@ -29,6 +29,9 @@ namespace FreelancingSystemProject.Models
         [Display(Name ="Approval")]
         public bool IsApprovedByAdmin { get; set; }
 
+
+        public bool HasProposalAccepted { get; set; }
+
         [Required]
         [Display(Name = "Job Type")]
         public int JobTypeId { get; set; }

@@ -14,8 +14,8 @@
 <hr />
 @foreach (var gr in Model)
 {
-    <h5>@gr.JobDescription</h5>
-    <table class="table table-bordered table-hover">
+    <h5>Job: @gr.JobDescription</h5>
+    <table class="table">
         <tr>
             <th>
                 Freelanncer
@@ -25,6 +25,9 @@
             </th>
             <th>
                 proposal Date
+            </th>
+            <th>
+                Status
             </th>
         </tr>
         @foreach (var item in gr.proposals)
@@ -39,6 +42,21 @@
                 <td>
                     @item.ProposalDate
                 </td>
+                
+                    @{
+                        if (item.Post.HasProposalAccepted)
+                        {
+                            <td>
+                                Accepted
+                            </td>
+                        }
+                        else { 
+                            <td>
+                                @Html.ActionLink("Accept", "AcceptProposal", new {id=item.Id }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Refuse", "RefuseProposal", new { id = item.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        }
+                    }        
             </tr>
         }
     </table>

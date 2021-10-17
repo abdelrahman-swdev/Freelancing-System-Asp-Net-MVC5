@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using FreelancingSystemProject.Models;
 
+
 namespace FreelancingSystemProject.Controllers
 {
     [Authorize(Roles ="Admin")]
     public class JobTypesController : Controller
     {
-        
-        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: JobTypes
         public ActionResult Index()

@@ -233,6 +233,10 @@
     <Compile Include="Migrations\202105271924310_makePhotoRequired.Designer.cs">
       <DependentUpon>202105271924310_makePhotoRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106050153565_addHasProposalAcceptedToPosts.cs" />
+    <Compile Include="Migrations\202106050153565_addHasProposalAcceptedToPosts.Designer.cs">
+      <DependentUpon>202106050153565_addHasProposalAcceptedToPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -681,8 +685,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -732,6 +734,8 @@
     <Content Include="Views\Admin\DeleteUser.cshtml" />
     <Content Include="Views\Home\GetSavedJobs.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_LoginModalPartial.cshtml" />
+    <Content Include="Views\Home\JoinUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -784,6 +788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105271924310_makePhotoRequired.resx">
       <DependentUpon>202105271924310_makePhotoRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106050153565_addHasProposalAcceptedToPosts.resx">
+      <DependentUpon>202106050153565_addHasProposalAcceptedToPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

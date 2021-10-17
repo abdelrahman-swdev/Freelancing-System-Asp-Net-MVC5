@@ -1,0 +1,39 @@
+﻿@model FreelancingSystemProject.Models.LoginViewModel
+<form id="LoginModalForm">
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="container" style="width:40%; margin-top:2%">
+        <div class="modal fade" tabindex="-1" id="LoginModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title" style="color:white">Login</h5>
+                        <button style="color:white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Email)
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Password)
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        <button type="button"
+                                class="btn btn-primary"
+                                id="btn"
+                                onclick="LoginModal()">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

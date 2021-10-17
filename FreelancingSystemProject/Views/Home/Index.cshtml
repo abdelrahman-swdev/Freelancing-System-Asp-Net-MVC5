@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FreelancingSystemProject.Models.JobType>
+﻿@model IEnumerable<FreelancingSystemProject.Models.Posts>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -23,36 +23,31 @@
 
     @foreach (var item in Model)
     {
-        foreach (var subitem in item.Posts)
-        {
-            if (subitem.IsApprovedByAdmin)
-            {
-                <div class="col-md-6 col-lg-4 containCard">
+        
+        <div class="col-md-6 col-lg-4 containCard">
 
-                    <div class="card border-dark text-white bg-dark" style="width: 18rem;">
-                        <div class="card-header">
-                            <span class="badge badge-primary">@subitem.JobType.Type</span>
-                            <span class="badge badge-primary">@subitem.JobBudget</span>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item mb-2 bg-dark">Description : @subitem.JobDescription</li>
-                                <li class="list-group-item mb-2 bg-dark">Created at : @subitem.CreationDate</li>
-                                <li class="list-group-item mb-2 bg-dark">Created By : @subitem.User.UserName</li>
-                            </ul>
-                            @if (User.IsInRole("Freelancer"))
-                            {
-
-                            <div class="links">
-                                @Html.ActionLink("Details", "Details", "Home", new { id = subitem.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
-                                @Html.ActionLink("Save For Later", "SaveJob","Home", new { id = subitem.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
-                            </div>
-                            }
-                        </div>  
-                    </div>
+            <div class="card border-dark text-white bg-dark" style="width: 18rem;">
+                <div class="card-header">
+                    <span class="badge badge-primary">@item.JobType.Type</span>
+                    <span class="badge badge-primary">@item.JobBudget</span>
                 </div>
-                
-            }
-        }
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item mb-2 bg-dark">Description : @item.JobDescription</li>
+                        <li class="list-group-item mb-2 bg-dark">Created at : @item.CreationDate</li>
+                        <li class="list-group-item mb-2 bg-dark">Created By : @item.User.UserName</li>
+                    </ul>
+                    @if (User.IsInRole("Freelancer"))
+                    {
+
+                    <div class="links">
+                        @Html.ActionLink("Details", "Details", "Home", new { id = item.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                        @Html.ActionLink("Save For Later", "SaveJob","Home", new { id = item.Id }, new { @class = "btn btn-outline-light mb-2 mt-2" })
+                    </div>
+                    }
+                </div>  
+            </div>
+        </div>       
+        
     }
 </div>

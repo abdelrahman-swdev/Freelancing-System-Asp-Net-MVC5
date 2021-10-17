@@ -45,7 +45,6 @@ namespace FreelancingSystemProject.Controllers
         }
 
         // GET: Posts
-        [Authorize(Roles = "Client,Admin")]
         public ActionResult Index()
         {
             if (User.IsInRole("Admin"))
@@ -59,7 +58,6 @@ namespace FreelancingSystemProject.Controllers
         }
 
         // GET: Posts/Create
-        [Authorize(Roles = "Client,Admin")]
         public ActionResult Create()
         {
             ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Type");
@@ -134,7 +132,6 @@ namespace FreelancingSystemProject.Controllers
         }
 
         // GET: Posts/Delete/5
-        [Authorize(Roles = "Client,Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

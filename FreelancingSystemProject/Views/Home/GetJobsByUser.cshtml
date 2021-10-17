@@ -22,22 +22,41 @@
         <th>
             @Html.DisplayNameFor(model => model.Post.JobDescription)
         </th>
-        
+        <th>
+            Status
+        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProposalDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Post.JobDescription)
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Message)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProposalDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Post.JobDescription)
+    </td>
+    @{
+        if (item.Post.HasProposalAccepted)
+        {
+            <td>
+                Congrats, your proposal has accepted by the client
+            </td>
+        }
+        else
+        {
+            <td>
+                Pending
+            </td>
+        }
+    }
+
+</tr>
 }
 
 </table>
