@@ -1,7 +1,9 @@
-﻿using FreelancingSystemProject.Models;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using FreelancingSystemProject.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +19,8 @@ namespace FreelancingSystemProject.Controllers
         {
             return View(db.Roles.ToList());
         }
+
+        
 
         // GET: Roles/Create
         public ActionResult Create()

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using FreelancingSystemProject.Models;
 using Microsoft.AspNet.Identity;
 
@@ -20,8 +23,35 @@ namespace FreelancingSystemProject.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult GetAllPostsAccepted()
         {
-            var posts = db.Posts.Include(p => p.JobType).Where(p=>p.IsApprovedByAdmin);
+            IQueryable<Posts> posts = db.Posts.Include(p => p.JobType).Where(p=>p.IsApprovedByAdmin);
             return View(posts.ToList());
+        }
+
+        public ActionResult ExportPosts()
+        {
+            List<Posts> allPosts = new List<Posts>();
+            allPosts = db.Posts.ToList();
+
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/CrystalReports"), "PostsReport.rpt"));
+
+            rd.SetDataSource(allPosts);
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            try
+            {
+
+                Stream stream = rd.ExportToStream(ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "PostsList.pdf");
+            }
+            catch(Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         // GET: Posts
